@@ -1,5 +1,9 @@
-package com.mj.payroll;
+package com.mj.payroll.controller;
 
+import com.mj.payroll.model.assembler.EmployeeModelAssembler;
+import com.mj.payroll.exception.EmployeeNotFoundException;
+import com.mj.payroll.model.Employee;
+import com.mj.payroll.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -21,7 +25,7 @@ public class EmployeeController {
     private final EmployeeModelAssembler assembler;
 
     @GetMapping("/employees")
-    CollectionModel<EntityModel<Employee>> getAllEmployees() {
+    public CollectionModel<EntityModel<Employee>> getAllEmployees() {
 
         List<EntityModel<Employee>> employees = repository.findAll().stream()
                 .map(assembler::toModel)
@@ -40,7 +44,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}")
-    EntityModel<Employee> getEmployeeById(@PathVariable Long id) {
+    public EntityModel<Employee> getEmployeeById(@PathVariable Long id) {
         Employee employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
         return assembler.toModel(employee);

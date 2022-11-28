@@ -1,11 +1,8 @@
-package com.mj.payroll;
+package com.mj.payroll.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.mj.payroll.model.constant.Status;
+import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import java.util.Objects;
 
@@ -14,7 +11,6 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "CUSTOMER_ORDER")
 public class Order {
     private @Id @GeneratedValue Long id;
     private String description;

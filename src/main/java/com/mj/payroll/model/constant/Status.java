@@ -1,4 +1,4 @@
-package com.mj.payroll;
+package com.mj.payroll.model.constant;
 
 public enum Status {
     IN_PROGRESS,
